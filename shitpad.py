@@ -1,9 +1,12 @@
 # (C) Rodrigo Dinis, 2022
 import os
+os.system("color a")
+os.system("title Shitpad")
 text = []
 def shitpad():
     while True:
-        writtenText = input("")
+        lines = len(text) + 1
+        writtenText = input(str(lines) + " ")
         if writtenText == "shitpadexit()":
             def saveProcess():
                 filename = input("Please type the name of the file (extension included).\n")
@@ -12,7 +15,6 @@ def shitpad():
                     for element in text:
                         file.write(element)
                     file.close()
-                    os.startfile(filename)
                     os._exit(0)
                 else:
                     print("Please specify a filename.")
@@ -25,6 +27,11 @@ def shitpad():
                 arrIndex = textIndex - 1
                 text[arrIndex] = newText + "\n"
                 print("Line overwritten sucessfully. \n")
+                linecounter = 1
+                for line in text:
+                    formatted = line[:len(line) - 1]
+                    print(linecounter, formatted)
+                    linecounter = linecounter + 1
                 shitpad()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
@@ -33,6 +40,11 @@ def shitpad():
                 textIndex = int(input("Please input the number of the line you want to remove. "))
                 text.pop(textIndex - 1)
                 print("Line deleted sucessfully. \n")
+                linecounter = 1
+                for line in text:
+                    formatted = line[:len(line) - 1]
+                    print(linecounter, formatted)
+                    linecounter = linecounter + 1
                 shitpad()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
