@@ -1,4 +1,5 @@
 # shitpad
+<img src="https://img.shields.io/github/size/Rocadinis/shitpad/shitpad.py">
 The worst text editor ever made
 
 # What is shitpad?

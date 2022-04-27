@@ -20,6 +20,29 @@ def shitpad():
                     print("Please specify a filename.")
                     saveProcess()
             saveProcess()    
+        elif writtenText == "shitpadopen()": #IMPERFECT BUT IT WORKS, I'LL HAVE TO FIX IT LATER
+            try:
+                filename = input("Open which file? ")
+                if filename != "":
+                    with open(filename, "r+") as f:
+                        for openline in f.readlines():
+                            text.append(openline)
+                    linecounter = 1
+                    for line in text:
+                        if linecounter == len(text):
+                            print(linecounter, line)
+                            textIndex = linecounter - 1
+                            text[textIndex] = text[textIndex] + "\n"
+                        else:
+                            formatted = line[:len(line) - 1]
+                            print(linecounter, formatted)
+                            linecounter = linecounter + 1
+                    linecounter = linecounter + 1
+                    shitpad()
+                else:
+                    print("Please specify a filename.")
+            except:
+                print("The file was not found. Please try again.")
         elif writtenText == "shitpadedit()":
             try:
                 textIndex = int(input("Please input the number of the line you want to edit. "))
