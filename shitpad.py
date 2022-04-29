@@ -25,8 +25,16 @@ def shitpad():
                 filename = input("Open which file? ")
                 if filename != "":
                     with open(filename, "r+") as f:
-                        for openline in f.readlines():
-                            text.append(openline)
+                        if len(text) != 0:
+                            overwriteConf = input("There is already text in this file. Discard your changes and open a file? ").lower()
+                            if overwriteConf == "yes" or overwriteConf == "y":
+                                while text:
+                                    text.pop()
+                                for openline in f.readlines():
+                                    text.append(openline)
+                            else:
+                                print("Process aborted.")
+                                shitpad()
                     linecounter = 1
                     for line in text:
                         if linecounter == len(text):
