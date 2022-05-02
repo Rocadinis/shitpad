@@ -1,10 +1,17 @@
 # (C) Rodrigo Dinis, 2022
 import os
+os.system("cls")
 os.system("color a")
 os.system("title Shitpad")
 text = []
 def shitpad():
     while True:
+        def printLines():
+            linecounter = 1
+            for line in text:
+                formatted = line[:len(line) - 1]
+                print(linecounter, formatted)
+                linecounter = linecounter + 1
         lines = len(text) + 1
         writtenText = input(str(lines) + " ")
         if writtenText == "shitpadexit()":
@@ -20,7 +27,7 @@ def shitpad():
                     print("Please specify a filename.")
                     saveProcess()
             saveProcess()    
-        elif writtenText == "shitpadopen()": #IMPERFECT BUT IT WORKS, I'LL HAVE TO FIX IT LATER
+        elif writtenText == "shitpadopen()":
             try:
                 filename = input("Open which file? ")
                 if filename != "":
@@ -49,6 +56,7 @@ def shitpad():
                     shitpad()
                 else:
                     print("Please specify a filename.")
+                    printLines()
             except:
                 print("The file was not found. Please try again.")
         elif writtenText == "shitpadedit()":
@@ -58,27 +66,22 @@ def shitpad():
                 arrIndex = textIndex - 1
                 text[arrIndex] = newText + "\n"
                 print("Line overwritten sucessfully. \n")
-                linecounter = 1
-                for line in text:
-                    formatted = line[:len(line) - 1]
-                    print(linecounter, formatted)
-                    linecounter = linecounter + 1
+                printLines()
                 shitpad()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
+                printLines()
         elif writtenText == "shitpaddelete()":
             try:
                 textIndex = int(input("Please input the number of the line you want to remove. "))
                 text.pop(textIndex - 1)
                 print("Line deleted sucessfully. \n")
                 linecounter = 1
-                for line in text:
-                    formatted = line[:len(line) - 1]
-                    print(linecounter, formatted)
-                    linecounter = linecounter + 1
+                printLines()
                 shitpad()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
+                printLines()
         else:
             text.append(writtenText + "\n") #if the input isn't a command, write the line
 shitpad() #run
