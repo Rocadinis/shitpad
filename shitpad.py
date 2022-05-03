@@ -1,5 +1,5 @@
 # (C) Rodrigo Dinis, 2022
-import os
+import os, time
 os.system("cls")
 os.system("color a")
 os.system("title Shitpad")
@@ -35,6 +35,7 @@ def shitpad():
                         if len(text) >= 0:
                             overwriteConf = input("There is already text in this file. Discard your changes and open a file? ").lower()
                             if overwriteConf == "yes" or overwriteConf == "y":
+                                os.system("cls")
                                 while text:
                                     text.pop()
                                 for openline in f.readlines():
@@ -66,6 +67,8 @@ def shitpad():
                 arrIndex = textIndex - 1
                 text[arrIndex] = newText + "\n"
                 print("Line overwritten sucessfully. \n")
+                time.sleep(1.5)
+                os.system("cls")
                 printLines()
                 shitpad()
             except:
@@ -76,6 +79,8 @@ def shitpad():
                 textIndex = int(input("Please input the number of the line you want to remove. "))
                 text.pop(textIndex - 1)
                 print("Line deleted sucessfully. \n")
+                time.sleep(1.5)
+                os.system("cls")
                 linecounter = 1
                 printLines()
                 shitpad()
