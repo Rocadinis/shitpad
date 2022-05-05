@@ -87,6 +87,18 @@ def shitpad():
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
                 printLines()
+        elif writtenText == "shitpadinsert()":
+            try:
+                line = int(input("Please input the number of the line you want to insert into. "))
+                insText = input("Write the text: ")
+                text.insert(line - 1, insText)
+                print("Line inserted sucessfully.")
+                time.sleep(1.5)
+                os.system("cls")
+                printLines()
+                shitpad()
+            except:
+                print("An invalid line number was given. Please try using the function again. \n")
         else:
             text.append(writtenText + "\n") #if the input isn't a command, write the line
 shitpad() #run
