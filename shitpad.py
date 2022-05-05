@@ -99,6 +99,18 @@ def shitpad():
                 shitpad()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
+        elif writtenText == "shitpadfind()":
+            toFind = input("Please input the text to find. ")
+            linecounter = 0
+            found = 0
+            for line in text:
+                linecounter += 1
+                if toFind in line:
+                    print(linecounter, line)
+                    found = found + line.count(toFind)
+            print("Found " + str(found) + " occurences of " + toFind + " in this file.")
+            printLines()
+            shitpad()
         else:
             text.append(writtenText + "\n") #if the input isn't a command, write the line
 shitpad() #run
