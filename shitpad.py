@@ -106,10 +106,8 @@ def shitpad():
             for line in text:
                 linecounter += 1
                 if toFind in line:
-                    print(linecounter, line)
                     found = found + line.count(toFind)
-            print("Found " + str(found) + " occurences of " + toFind + " in this file.")
-            printLines()
+            print("Found " + str(found) + " occurences of " + "'" + toFind + "'" + " in this file.")
             shitpad()
         else:
             text.append(writtenText + "\n") #if the input isn't a command, write the line
