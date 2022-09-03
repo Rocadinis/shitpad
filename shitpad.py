@@ -15,9 +15,18 @@ def shitpad():
         lines = len(text) + 1
         writtenText = input(str(lines) + " ")
         if writtenText == "shitpadexit()":
-            def saveProcess():
+            exconf = False
+            for i in range(2):
                 filename = input("Please type the name of the file (extension included).\n")
-                if filename != "":
+                if exconf == True:
+                   exconf = input("Exit Shitpad without saving? Y/N ").lower()
+                   if exconf == "y":
+                    os._exit(0)
+                   else:
+                    exconf = False
+                    os.system("cls")
+                    printLines()
+                elif filename != "":
                     file = open(filename, "w")
                     for element in text:
                         file.write(element)
@@ -25,8 +34,7 @@ def shitpad():
                     os._exit(0)
                 else:
                     print("Please specify a filename.")
-                    saveProcess()
-            saveProcess()    
+                    exconf = True
         elif writtenText == "shitpadopen()":
             try:
                 filename = input("Open which file? ")
@@ -42,7 +50,9 @@ def shitpad():
                                     text.append(openline)
                             else:
                                 print("Process aborted.")
-                                shitpad()
+                                time.sleep(1.5)
+                                os.system("cls")
+                                printLines()
                     linecounter = 1
                     for line in text:
                         if linecounter == len(text):
@@ -54,7 +64,6 @@ def shitpad():
                             print(linecounter, formatted)
                             linecounter = linecounter + 1
                     linecounter = linecounter + 1
-                    shitpad()
                 else:
                     print("Please specify a filename.")
                     printLines()
@@ -63,40 +72,49 @@ def shitpad():
         elif writtenText == "shitpadedit()":
             try:
                 textIndex = int(input("Please input the number of the line you want to edit. "))
-                newText = input("Write the new text: ")
-                arrIndex = textIndex - 1
-                text[arrIndex] = newText + "\n"
-                print("Line overwritten sucessfully. \n")
-                time.sleep(1.5)
-                os.system("cls")
-                printLines()
-                shitpad()
+                if textIndex != 0:
+                    newText = input("Write the new text: ")
+                    arrIndex = textIndex - 1
+                    text[arrIndex] = newText + "\n"
+                    print("Line overwritten sucessfully. \n")
+                    time.sleep(1.5)
+                    os.system("cls")
+                    printLines()
+                else:
+                    print("An invalid line number was given. Please try using the function again. \n")
+                    printLines()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
                 printLines()
         elif writtenText == "shitpaddelete()":
             try:
                 textIndex = int(input("Please input the number of the line you want to remove. "))
-                text.pop(textIndex - 1)
-                print("Line deleted sucessfully. \n")
-                time.sleep(1.5)
-                os.system("cls")
-                linecounter = 1
-                printLines()
-                shitpad()
+                if textIndex != 0:
+                    text.pop(textIndex - 1)
+                    print("Line deleted sucessfully. \n")
+                    time.sleep(1.5)
+                    os.system("cls")
+                    linecounter = 1
+                    printLines()
+                else:
+                    print("An invalid line number was given. Please try using the function again. \n")
+                    printLines()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
                 printLines()
         elif writtenText == "shitpadinsert()":
             try:
-                line = int(input("Please input the number of the line you want to insert into. "))
-                insText = input("Write the text: ")
-                text.insert(line - 1, insText)
-                print("Line inserted sucessfully.")
-                time.sleep(1.5)
-                os.system("cls")
-                printLines()
-                shitpad()
+                textIndex = int(input("Please input the number of the line you want to insert into. "))
+                if textIndex != 0:
+                    insText = input("Write the text: ")
+                    text.insert(textIndex - 1, insText + "\n")
+                    print("Line inserted sucessfully.")
+                    time.sleep(1.5)
+                    os.system("cls")
+                    printLines()
+                else:
+                    print("An invalid line number was given. Please try using the function again. \n")
+                    printLines()
             except:
                 print("An invalid line number was given. Please try using the function again. \n")
         elif writtenText == "shitpadfind()":
@@ -107,8 +125,8 @@ def shitpad():
                 linecounter += 1
                 if toFind in line:
                     found = found + line.count(toFind)
-            print("Found " + str(found) + " occurences of " + "'" + toFind + "'" + " in this file.")
-            shitpad()
+            print("Found " + str(found) + " occurences of " + "'" + toFind + "'" + " in this file. \n")
+            printLines()
         else:
-            text.append(writtenText + "\n") #if the input isn't a command, write the line
+            text.append(writtenText + " \n") #if the input isn't a command, write the line
 shitpad() #run
